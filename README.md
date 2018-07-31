@@ -12,8 +12,8 @@ service.needImagesForSomethig(id idTrack, String hashSecurity, new ServiceCallba
 
     }
 
-    public void throwProblem(int code, ServiceException){
-        
+    public void throwProblem(int code, ServiceException exception){
+
     }
 } );
 ```
