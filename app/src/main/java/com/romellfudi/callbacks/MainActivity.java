@@ -1,4 +1,4 @@
-package freddy.fudi.callbacks;
+package com.romellfudi.callbacks;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,7 +7,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.ParseException;
-import freddy.fudi.callbacks.myController.MethodCall;
 
 public class MainActivity extends AppCompatActivity {
     TextView txt;
@@ -15,8 +14,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        txt = (TextView) findViewById(R.id.txt);
+        setContentView(freddy.fudi.callbacks.R.layout.activity_main);
+        txt = (TextView) findViewById(freddy.fudi.callbacks.R.id.txt);
     }
 
     public void Callback(View view) {
@@ -128,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void MethodParse(View view){
-        myController.getInstance().getParsedObject("", new MethodCall(){
+        myController.getInstance().getParsedObject("", new myController.MethodCall(){
             @Override
             public void onFail(Object... objects) {
 

@@ -1,13 +1,13 @@
-package freddy.fudi.callbacks;
+package com.romellfudi.callbacks;
 
 import java.net.HttpRetryException;
 import java.text.ParseException;
 
-import freddy.fudi.callbacks.interfaces.FailCallback;
-import freddy.fudi.callbacks.interfaces.ParseCallback;
-import freddy.fudi.callbacks.interfaces.ResponseFailCallback;
-import freddy.fudi.callbacks.interfaces.ResponseObjectCallback;
-import freddy.fudi.callbacks.interfaces.SuccessCallback;
+import com.romellfudi.callbacks.interfaces.FailCallback;
+import com.romellfudi.callbacks.interfaces.ParseCallback;
+import com.romellfudi.callbacks.interfaces.ResponseFailCallback;
+import com.romellfudi.callbacks.interfaces.ResponseObjectCallback;
+import com.romellfudi.callbacks.interfaces.SuccessCallback;
 
 /**
  * Created by romelldominguez on 9/19/16.

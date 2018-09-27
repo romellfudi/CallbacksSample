@@ -1,4 +1,4 @@
-package freddy.fudi.callbacks;
+package com.romellfudi.callbacks;
 
 import java.util.Objects;
 
