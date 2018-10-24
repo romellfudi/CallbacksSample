@@ -13,7 +13,6 @@ public class MathCallback {
 
     void Mathfailed(NumberFormatException exception,Object... objects){
         callback.failed(exception.getMessage(),objects);
-        ;
     }
 
 

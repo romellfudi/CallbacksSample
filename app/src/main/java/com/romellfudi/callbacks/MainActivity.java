@@ -14,8 +14,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(freddy.fudi.callbacks.R.layout.activity_main);
-        txt = (TextView) findViewById(freddy.fudi.callbacks.R.id.txt);
+        setContentView(R.layout.activity_main);
+        txt = (TextView) findViewById(R.id.txt);
     }
 
     public void Callback(View view) {
@@ -96,6 +96,11 @@ public class MainActivity extends AppCompatActivity {
             void Mathsuccessed(Object... objects) {
                 show(objects[0].toString());
             }
+
+            @Override
+            void Mathfailed(NumberFormatException exception, Object... objects) {
+                show(exception.getMessage());
+            }
         });
     }
 
@@ -120,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void failed(Exception exception, Object... objects) {
                 if (exception!=null)
-                    show(exception.getMessage().toString());
+                    show(exception.getMessage());
             }
         });
 
@@ -130,17 +135,17 @@ public class MainActivity extends AppCompatActivity {
         myController.getInstance().getParsedObject("", new myController.MethodCall(){
             @Override
             public void onFail(Object... objects) {
-
+                objects[0].toString();
             }
 
             @Override
             public void onParse(ParseException exception, Object... objects) {
-
+                show(exception.getMessage());
             }
 
             @Override
             public void onSuccess(Object... objects) {
-
+                objects[0].toString();
             }
         });
     }
@@ -149,12 +154,12 @@ public class MainActivity extends AppCompatActivity {
         myController.getInstance().getHttp("", new myController.HttpCall<Model>() {
             @Override
             public void errorHTTP(String codeError, Exception exception, Object... objects) {
-
+                show(codeError+" - "+exception.getMessage()+" - "+objects[0].toString());
             }
 
             @Override
             public void onResponse(Model model, Object... objects) {
-
+                show(objects[0].toString());
             }
         });
     }

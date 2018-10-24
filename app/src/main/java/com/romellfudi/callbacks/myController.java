@@ -72,7 +72,7 @@ public class myController {
     }
 
     public void resolverProblema(int n, int m, MathCallback mathCallback) {
-        mathCallback.Mathsuccessed(codOK);
+        mathCallback.Mathsuccessed(n+m);
         mathCallback.Mathfailed(new NumberFormatException("suma incorrecta"), codERROR);
     }
 
