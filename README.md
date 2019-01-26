@@ -4,7 +4,7 @@
 ## In this project we visualize how use callbacks
 
 ### By Romell Domínguez
-[![](snapshot/icono.png)](https://www.romellfudi.com/)
+[![](https://raw.githubusercontent.com/romellfudi/assets/master/favicon.ico#favico)](https://www.romellfudi.com/)
 
 Examples:
 ```java
