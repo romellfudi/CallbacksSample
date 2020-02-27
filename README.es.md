@@ -45,13 +45,9 @@ service.returnTripleCallback(value,new OtherCallback(){
 ``` 
 ```kotlin
 //kotlin
-service.returnTripleCallback(value,new OtherCallback(){
-
-            @Override
-            public void returns(int model) {
-                show("The triple of $value is $it")
-            }
-        });
+service.returnTripleCallback(value) {
+             show("The triple of $value is $it")
+         }
 ``` 
 
 ### License
