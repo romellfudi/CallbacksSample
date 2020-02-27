@@ -8,6 +8,7 @@
 
 Ejemplo de uso:
 ```java
+// java
 service.needImagesForSomethig(id idTrack, String hashSecurity, new ServiceCallback(){
     public void successful(int code,Array<Bitmap> maps){
 
@@ -17,6 +18,18 @@ service.needImagesForSomethig(id idTrack, String hashSecurity, new ServiceCallba
 
     }
 } );
+```
+```kotlin
+// kotlin
+service.needImagesForSomethig(idTrack: Int , hashSecurity: String , object : ServiceCallback(){
+    override fun  successful(code : Int,maps: Array<Bitmap> ){
+
+    }
+
+    override fun throwProblem(code: Int,  exception: ServiceException){
+
+    }
+} ) 
 ```
 
 ### License

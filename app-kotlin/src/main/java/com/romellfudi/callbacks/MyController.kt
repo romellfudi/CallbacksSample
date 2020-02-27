@@ -7,7 +7,7 @@ import java.text.ParseException
 /**
  * Created by romelldominguez on 9/19/16.
  */
-class myController private constructor() {
+class MyController private constructor() {
     private var mModel: Model? = null
     fun guardarData(data: String, callback: Callback) {
         if (!data.isEmpty()) callback.successed("Se obtuvo la información", data) else callback.failed("Mensaje de Error")
@@ -34,7 +34,7 @@ class myController private constructor() {
         }
     }
 
-    fun enviarData(num: Int, decimals: FloatArray?): myController? {
+    fun enviarData(num: Int, decimals: FloatArray?): MyController? {
         instance!!.mModel = Model().setNumero(num).setCifras(decimals)
         return instance
     }
@@ -61,7 +61,9 @@ class myController private constructor() {
         if (code.isEmpty()) methodCall.onFail("Codido no existe") else {
             try {
                 val cod = code.toInt()
-                methodCall.onSuccess(Model().setNumero(cod).setCifras(floatArrayOf(cod.toFloat())))
+                methodCall.onSuccess(Model()
+                        .setNumero(cod)
+                        .setCifras(floatArrayOf(cod.toFloat())))
             } catch (e: Exception) {
                 methodCall.onParse((e as ParseException))
             }
@@ -82,13 +84,10 @@ class myController private constructor() {
 
     abstract class MethodCall : SuccessCallback, FailCallback, ParseCallback
     abstract class HttpCall<L> : ResponseObjectCallback<L>, ResponseFailCallback
-    companion object {
-        private var instance: myController? = null
+    companion object : SingletonHolder<MyController >(::MyController){
+        private var instance: MyController? = null
         private const val codOK = 0
         private const val codERROR = -1
-        fun getInstance(): myController? {
-            if (instance == null) instance = myController()
-            return instance
-        }
     }
+
 }
