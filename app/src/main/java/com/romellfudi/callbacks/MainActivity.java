@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.MessageFormat;
 import java.text.ParseException;
 
 public class MainActivity extends AppCompatActivity {
@@ -201,6 +202,17 @@ public class MainActivity extends AppCompatActivity {
                         return new Model();
                     }
                 });
+    }
+
+    public void returnCallback(View view) {
+        final int value =3;
+        myController.getInstance().returnTripleCallback(value,new OtherCallback(){
+
+            @Override
+            public void returns(int it) {
+                show(MessageFormat.format("The triple of {0} is {1}", value, it));
+            }
+        });
     }
 
     private void show(String string) {

@@ -32,6 +32,28 @@ service.needImagesForSomethig(idTrack: Int , hashSecurity: String , object : Ser
 } ) 
 ```
 
+## Simple
+```java
+//java
+service.returnTripleCallback(value,new OtherCallback(){
+
+            @Override
+            public void returns(int model) {
+                show(MessageFormat.format("The triple of {0} is {1}", value, it));
+            }
+        });
+``` 
+```kotlin
+//kotlin
+service.returnTripleCallback(value,new OtherCallback(){
+
+            @Override
+            public void returns(int model) {
+                show("The triple of $value is $it")
+            }
+        });
+``` 
+
 ### License
 ```
 Copyright 2018 Romell D.Z.

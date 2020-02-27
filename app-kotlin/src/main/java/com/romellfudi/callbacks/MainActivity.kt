@@ -169,6 +169,13 @@ class MainActivity : AppCompatActivity() {
                 })
     }
 
+    fun returnCallback(view: View?) {
+        val value =3
+         MyController.getInstance().returnTripleCallback(value) {
+             show("The triple of $value is $it")
+         }
+    }
+
     private fun show(string: String?) {
         Toast.makeText(this@MainActivity, string, Toast.LENGTH_SHORT).show()
     }

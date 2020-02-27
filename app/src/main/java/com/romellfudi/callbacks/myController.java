@@ -118,6 +118,9 @@ public class myController {
         }
     }
 
+    public void returnTripleCallback(int value, OtherCallback otherCallback) {
+        otherCallback.returns(value*3);
+    }
 
 
     public static abstract class MethodCall implements SuccessCallback, FailCallback, ParseCallback{}

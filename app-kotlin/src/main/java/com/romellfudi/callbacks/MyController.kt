@@ -82,9 +82,13 @@ class MyController private constructor() {
         }
     }
 
+    fun returnTripleCallback(i: Int, function: (Int) -> Unit) {
+        function(i * 3)
+    }
+
     abstract class MethodCall : SuccessCallback, FailCallback, ParseCallback
     abstract class HttpCall<L> : ResponseObjectCallback<L>, ResponseFailCallback
-    companion object : SingletonHolder<MyController >(::MyController){
+    companion object : SingletonHolder<MyController>(::MyController) {
         private var instance: MyController? = null
         private const val codOK = 0
         private const val codERROR = -1
