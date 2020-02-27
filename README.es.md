@@ -48,6 +48,9 @@ service.returnTripleCallback(value,new OtherCallback(){
 service.returnTripleCallback(value) {
              show("The triple of $value is $it")
          }
+service.returnTripleCallback(value) { it: Int, iTriple: Int ->
+             show("The triple of $it is $iTriple")
+         }
 ``` 
 
 ### License
