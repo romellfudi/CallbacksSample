@@ -171,8 +171,8 @@ class MainActivity : AppCompatActivity() {
 
     fun returnCallback(view: View?) {
         val value =3
-         MyController.getInstance().returnTripleCallback(value) {
-             show("The triple of $value is $it")
+         MyController.getInstance().returnTripleCallback(value) { it: Int, iTriple: Int ->
+             show("The triple of $it is $iTriple")
          }
     }
 

@@ -82,8 +82,8 @@ class MyController private constructor() {
         }
     }
 
-    fun returnTripleCallback(i: Int, function: (Int) -> Unit) {
-        function(i * 3)
+    fun returnTripleCallback(i: Int, function: (Int,Int) -> Unit) {
+        function(i,i * 3)
     }
 
     abstract class MethodCall : SuccessCallback, FailCallback, ParseCallback
