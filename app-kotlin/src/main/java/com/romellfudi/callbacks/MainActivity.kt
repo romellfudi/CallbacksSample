@@ -49,26 +49,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun RestCallBack() {
-        MyController.enviarData(0, floatArrayOf())
-                .enqueRest(object : RestCallBack {
-                    override fun httpOK(vararg objects: Any?) {
-                        val num = objects[0] as Int
-                        val floats = objects[1] as FloatArray
-                        val model = objects[2] as Model
-                    }
+        MyController.apply {
+            enviarData(0, floatArrayOf())
+            enqueRest(object : RestCallBack {
+                override fun httpOK(vararg objects: Any?) {
+                    val num = objects[0] as Int
+                    val floats = objects[1] as FloatArray
+                    val model = objects[2] as Model
+                }
 
-                    override fun errorHttp(exception: Exception?, vararg objects: Any?) {
-                        exception?.let { show(it.message) }
-                    }
+                override fun errorHttp(exception: Exception?, vararg objects: Any?) {
+                    exception?.let { show(it.message) }
+                }
 
-                    override fun successed(vararg objects: Any) {
-                        show(objects[0].toString())
-                    }
+                override fun successed(vararg objects: Any) {
+                    show(objects[0].toString())
+                }
 
-                    override fun failed(vararg objects: Any) {
-                        show(objects[0].toString())
-                    }
-                })
+                override fun failed(vararg objects: Any) {
+                    show(objects[0].toString())
+                }
+            })
+        }
     }
 
     fun MathCallback() {

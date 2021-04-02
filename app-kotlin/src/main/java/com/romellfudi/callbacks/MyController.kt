@@ -39,9 +39,8 @@ object MyController {
         }
     }
 
-    fun enviarData(num: Int, decimals: FloatArray?): MyController {
+    fun enviarData(num: Int, decimals: FloatArray?) {
         mModel = Model(num, decimals)
-        return this
     }
 
     fun enqueRest(restCallBack: RestCallBack) {
