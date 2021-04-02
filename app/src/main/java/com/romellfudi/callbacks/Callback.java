@@ -1,7 +1,5 @@
 package com.romellfudi.callbacks;
 
-import java.util.Objects;
-
 /**
  * Created by romelldominguez on 9/19/16.
  */

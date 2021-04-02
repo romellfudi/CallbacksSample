@@ -1,28 +1,29 @@
 package com.romellfudi.callbacks
 
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import com.romellfudi.callbacks.MyController.HttpCall
 import com.romellfudi.callbacks.MyController.MethodCall
+import com.romellfudi.callbacks.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
 import java.text.ParseException
 
 class MainActivity : AppCompatActivity() {
-    var txt: TextView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        txt = findViewById<View>(R.id.txt) as TextView
+        (DataBindingUtil.setContentView(this, R.layout.activity_main)
+                as ActivityMainBinding).also { it.main = this }
     }
 
-    fun Callback(view: View?) {
-        MyController.getInstance().guardarData(txt!!.text.toString(),
+    fun Callback() {
+        MyController.guardarData(txt.text.toString(),
                 object : Callback {
                     override fun successed(vararg objects: Any) {
                         show(objects[0] as String)
-                        txt!!.append(objects[1].toString())
+                        txt.append(objects[1].toString())
                     }
 
                     override fun failed(vararg objects: Any) {
@@ -31,10 +32,10 @@ class MainActivity : AppCompatActivity() {
                 })
     }
 
-    fun EnviarCallback(view: View?) { //sendCallback
-        MyController.getInstance().enviarData(2, floatArrayOf(0f, 8f), object : EnviarCallback {
+    fun EnviarCallback() {
+        MyController.enviarData(2, floatArrayOf(0f, 8f), object : EnviarCallback {
             override fun errorAlParsear(exception: Exception?) {
-                if (exception != null) show(exception.message)
+                show(exception?.message ?: "No exception found")
             }
 
             override fun successed(vararg objects: Any) {
@@ -47,9 +48,9 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    fun RestCallBack(view: View?) {
-        MyController.getInstance().enviarData(0, floatArrayOf())
-                ?.enqueRest(object : RestCallBack {
+    fun RestCallBack() {
+        MyController.enviarData(0, floatArrayOf())
+                .enqueRest(object : RestCallBack {
                     override fun httpOK(vararg objects: Any?) {
                         val num = objects[0] as Int
                         val floats = objects[1] as FloatArray
@@ -57,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     override fun errorHttp(exception: Exception?, vararg objects: Any?) {
-                        if (exception == null) show(exception!!.message)
+                        exception?.let { show(it.message) }
                     }
 
                     override fun successed(vararg objects: Any) {
@@ -70,8 +71,8 @@ class MainActivity : AppCompatActivity() {
                 })
     }
 
-    fun MathCallback(view: View?) { //MathCallback
-        MyController.getInstance().resolverProblema(3, 4, object : MathCallback() {
+    fun MathCallback() {
+        MyController.resolverProblema(3, 4, object : MathCallback() {
             override fun Mathsuccessed(vararg objects: Any) {
                 show(objects[0].toString())
             }
@@ -82,8 +83,8 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    fun ObjectCallback(view: View?) { //        ObjectCallback
-        MyController.getInstance().resolverObject(null, object : ObjectCallback() {
+    fun ObjectCallback() {
+        MyController.resolverObject(null, object : ObjectCallback() {
             override fun successed(vararg objects: Any) {
                 show(objects[0].toString())
             }
@@ -94,20 +95,20 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    fun AbstractCallback(view: View?) { //        AbstractCallback
-        MyController.getInstance().resolverAbstract(3, "34", object : AbstractCallback() {
+    fun AbstractCallback() {
+        MyController.resolverAbstract(3, "34", object : AbstractCallback() {
             override fun successed(vararg objects: Any) {
                 show(objects[0].toString())
             }
 
             override fun failed(exception: Exception?, vararg objects: Any?) {
-                if (exception != null) show(exception.message)
+                exception?.let { show(it.message) }
             }
         })
     }
 
-    fun MethodParse(view: View?) {
-        MyController.getInstance().getParsedObject("", object : MethodCall() {
+    fun MethodParse() {
+        MyController.getParsedObject("", object : MethodCall() {
             override fun onFail(vararg objects: Any) {
                 objects[0].toString()
             }
@@ -122,8 +123,8 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    fun OtherMethodParse(view: View?) {
-        MyController.getInstance().getHttp("", object : HttpCall<Model?>() {
+    fun OtherMethodParse() {
+        MyController.getHttp("", object : HttpCall<Model?>() {
             override fun errorHTTP(codeError: String, exception: Exception, vararg objects: Any) {
                 show(codeError + " - " + exception.message + " - " + objects[0].toString())
             }
@@ -135,8 +136,8 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    fun twoSteps(view: View?) {
-        MyController.getInstance().twoSteps(object : PreCallback {
+    fun twoSteps() {
+        MyController.twoSteps(object : PreCallback {
             override fun successed(vararg objects: Any) {
                 show(objects[0].toString())
             }
@@ -155,7 +156,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    fun interfaces(view: View?) {
+    fun interfaces() {
         TemplateController<Model, Model2>()
                 .methodStatickCall(object : TemplateController.TemplateCallback<Model?, Model2?>() {
                     override fun methodPoorReturnY(x: Model?): Model2? {
@@ -169,11 +170,11 @@ class MainActivity : AppCompatActivity() {
                 })
     }
 
-    fun returnCallback(view: View?) {
-        val value =3
-         MyController.getInstance().returnTripleCallback(value) { it: Int, iTriple: Int ->
-             show("The triple of $it is $iTriple")
-         }
+    fun returnCallback() {
+        val value = 3
+        MyController.returnTripleCallback(value) { it: Int, iTriple: Int ->
+            show("The triple of $it is $iTriple")
+        }
     }
 
     private fun show(string: String?) {

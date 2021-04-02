@@ -1,101 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/www_f_b" />
+    <data>
+        <variable
+            name="main"
+            type="com.romellfudi.callbacks.MainActivity" />
+    </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/txt"
-        android:orientation="vertical">
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context=".MainActivity">
 
-        <Button
-            style="@style/Base.Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/txt"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="Callback"
-            android:text="Callback" />
+            android:text="@string/www_f_b" />
 
-        <Button
-            style="@style/Base.Widget.AppCompat.Button.Colored"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="EnviarCallback"
-            android:text="EnviarCallback" />
+            android:layout_height="match_parent"
+            android:layout_below="@+id/txt"
+            android:orientation="vertical">
 
-        <Button
-            style="@style/Base.Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="RestCallBack"
-            android:text="RestCallBack" />
+            <Button
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v) -> main.Callback()}"
+                android:text="Callback" />
 
-        <Button
-            style="@style/Base.Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="MathCallback"
-            android:text="MathCallback" />
+            <Button
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="EnviarCallback"
+                android:text="EnviarCallback" />
 
-        <Button
-            style="@style/Base.Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="ObjectCallback"
-            android:text="ObjectCallback" />
+            <Button
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v) -> main.RestCallBack()}"
+                android:text="RestCallBack" />
 
-        <Button
-            style="@style/Base.Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="AbstractCallback"
-            android:text="AbstractCallback" />
+            <Button
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v) -> main.MathCallback()}"
+                android:text="MathCallback" />
 
-        <Button
-            style="@style/Base.Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="MethodParse"
-            android:text="MethodParse" />
+            <Button
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v) -> main.ObjectCallback()}"
+                android:text="ObjectCallback" />
 
-        <Button
-            style="@style/Base.Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="OtherMethodParse"
-            android:text="OtherMethodParse" />
+            <Button
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v) -> main.AbstractCallback()}"
+                android:text="AbstractCallback" />
 
-        <Button
-            style="@style/Base.Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="twoSteps"
-            android:text="twoSteps" />
+            <Button
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v) -> main.MethodParse()}"
+                android:text="MethodParse" />
 
-        <Button
-            style="@style/Base.Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="interfaces"
-            android:text="interfaces" />
+            <Button
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v) -> main.OtherMethodParse()}"
+                android:text="OtherMethodParse" />
 
-        <Button
-            style="@style/Base.Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="returnCallback"
-            android:text="triple" />
-    </LinearLayout>
-</RelativeLayout>
+            <Button
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v) -> main.twoSteps()}"
+                android:text="twoSteps" />
+
+            <Button
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v) -> main.interfaces()}"
+                android:text="interfaces" />
+
+            <Button
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v) -> main.returnCallback()}"
+                android:text="triple" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

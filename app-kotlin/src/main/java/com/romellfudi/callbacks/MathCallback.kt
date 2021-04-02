@@ -6,10 +6,10 @@ package com.romellfudi.callbacks
 open class MathCallback {
     var callback: Callback? = null
     open fun Mathsuccessed(vararg objects: Any) {
-        callback!!.successed(*objects)
+        callback?.successed(*objects)
     }
 
     open fun Mathfailed(exception: NumberFormatException, vararg objects: Any?) {
-        callback!!.failed(exception.message!!, objects)
+        callback?.failed(exception.message!!, objects)
     }
 }

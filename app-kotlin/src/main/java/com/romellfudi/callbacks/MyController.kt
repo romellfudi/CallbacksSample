@@ -7,18 +7,21 @@ import java.text.ParseException
 /**
  * Created by romelldominguez on 9/19/16.
  */
-class MyController private constructor() {
+object MyController {
+    private const val codOK = 0
+    private const val codERROR = -1
     private var mModel: Model? = null
-    fun guardarData(data: String, callback: Callback) {
-        if (!data.isEmpty()) callback.successed("Se obtuvo la información", data) else callback.failed("Mensaje de Error")
-    }
+
+    fun guardarData(data: String, callback: Callback) =
+            if (data.isNotEmpty()) callback.successed("Se obtuvo la información", data)
+            else callback.failed("Mensaje de Error")
 
     fun enviarData(num: Int, decimals: FloatArray, enviarCallback: EnviarCallback?): Int {
         return if (num == 0 && decimals.isNotEmpty()) {
-            enviarCallback!!.successed(codOK)
+            enviarCallback?.successed(codOK)
             codOK
         } else {
-            enviarCallback!!.errorAlParsear(ParseException("parseo", -1))
+            enviarCallback?.errorAlParsear(ParseException("parseo", -1))
             codERROR
         }
     }
@@ -26,21 +29,24 @@ class MyController private constructor() {
     fun enviarData(num: Int, decimals: FloatArray, enviarCallback: EnviarCallback?, restCallBack: RestCallBack) {
         val cod = enviarData(num, decimals, enviarCallback)
         if (cod == codOK) {
-            if (enviarCallback == null) restCallBack.failed("Enviar data error") else {
+            if (enviarCallback == null) {
+                restCallBack.failed("Enviar data error")
+            } else {
                 restCallBack.httpOK("ok")
             }
         } else {
-            enviarCallback!!.failed("Error al parsear la data de envio")
+            enviarCallback?.failed("Error al parsear la data de envio")
         }
     }
 
-    fun enviarData(num: Int, decimals: FloatArray?): MyController? {
-        instance!!.mModel = Model().setNumero(num).setCifras(decimals)
-        return instance
+    fun enviarData(num: Int, decimals: FloatArray?): MyController {
+        mModel = Model(num, decimals)
+        return this
     }
 
     fun enqueRest(restCallBack: RestCallBack) {
-        if (mModel != null) restCallBack.httpOK(mModel!!.numero, mModel!!.cifras, mModel!!) else restCallBack.errorHttp(NullPointerException("modelo sin construir"))
+        mModel?.let { restCallBack.httpOK(it.numero, it.cifras, it) }
+                ?: restCallBack.errorHttp(NullPointerException("modelo sin construir"))
     }
 
     fun resolverProblema(n: Int, m: Int, mathCallback: MathCallback) {
@@ -49,49 +55,39 @@ class MyController private constructor() {
     }
 
     fun resolverObject(`object`: Any?, objectCallback: ObjectCallback) {
-        if (`object` != null) objectCallback.successed(`object`) else objectCallback.failed(NullPointerException("Referencia Vacia"))
+        `object`?.let { objectCallback.successed(it) }
+                ?: objectCallback.failed(NullPointerException("Referencia Vacia"))
     }
 
     fun resolverAbstract(dato: Int, name: String, abstractCallback: AbstractCallback) {
-        if (name.isNotEmpty()) abstractCallback.successed(codOK,
-                Model().setNumero(dato).setCifras(floatArrayOf(name.toFloat()))) else abstractCallback.failed(NoClassDefFoundError("Clase no encontrada"), codERROR)
+        if (name.isNotEmpty()) abstractCallback.successed(codOK, Model(dato, floatArrayOf(name.toFloat())))
+        else abstractCallback.failed(NoClassDefFoundError("Clase no encontrada"), codERROR)
     }
 
-    fun getParsedObject(code: String, methodCall: MethodCall) {
-        if (code.isEmpty()) methodCall.onFail("Codido no existe") else {
-            try {
-                val cod = code.toInt()
-                methodCall.onSuccess(Model()
-                        .setNumero(cod)
-                        .setCifras(floatArrayOf(cod.toFloat())))
-            } catch (e: Exception) {
-                methodCall.onParse((e as ParseException))
+    fun getParsedObject(code: String, methodCall: MethodCall) =
+            if (code.isEmpty()) methodCall.onFail("Codido no existe") else {
+                try {
+                    methodCall.onSuccess(Model(code.toInt(), floatArrayOf(code.toFloat())))
+                } catch (e: Exception) {
+                    methodCall.onParse((e as ParseException))
+                }
             }
-        }
-    }
 
     fun getHttp(url: String?, httpCall: HttpCall<Model?>) {
         httpCall.errorHTTP("404", HttpRetryException("", 404))
-        httpCall.onResponse(Model().setCifras(null).setNumero(404))
+        httpCall.onResponse(Model(404, null))
     }
 
     fun twoSteps(vararg callbacks: Callback) {
-        for (callback in callbacks) {
+        for (callback in callbacks)
             (callback as? PreCallback)?.successed("Pre-Success")
-                    ?: (callback as? PosCallback)?.failed("Pos-Fail")
-        }
+                ?: (callback as? PosCallback)?.failed("Pos-Fail")
     }
 
-    fun returnTripleCallback(i: Int, function: (Int,Int) -> Unit) {
-        function(i,i * 3)
+    fun returnTripleCallback(i: Int, function: (Int, Int) -> Unit) {
+        function(i, i * 3)
     }
 
     abstract class MethodCall : SuccessCallback, FailCallback, ParseCallback
     abstract class HttpCall<L> : ResponseObjectCallback<L>, ResponseFailCallback
-    companion object : SingletonHolder<MyController>(::MyController) {
-        private var instance: MyController? = null
-        private const val codOK = 0
-        private const val codERROR = -1
-    }
-
 }
