@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<!-- saved from url=(0092)#0 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <link rel="shortcut icon" href="https://raw.githubusercontent.com/romellfudi/assets/master/favicon.ico" />
+  <title>Callback Tutorial</title>
+  <link rel="stylesheet" href="./index_files/css">
+  <link rel="stylesheet" href="./index_files/icon">
+  <link rel="stylesheet" href="./index_files/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body class="vsc-initialized">
+  <google-codelab id="https://github.com/romellfudi/CallbacksSample" environment="web" feedback-link="https://github.com/romellfudi/CallbacksSample/issues" selected="0" google-codelab-ready="" codelab-title="Callback Tutorial"><div id="drawer"><div class="codelab-time-container" style="display: none;"></div><div class="steps"><ol><li completed="" selected=""><a href="#0"><span class="step"><span>Introduction</span></span></a></li><li><a href="#1"><span class="step"><span>Getting set up</span></span></a></li><li><a href="#2"><span class="step"><span>Write callbacks (1)</span></span></a></li><li><a href="#3"><span class="step"><span>Write callbacks (2)</span></span></a></li><li><a href="#4"><span class="step"><span>Write callbacks (3)</span></span></a></li><li><a href="#5"><span class="step"><span>Write callbacks (4)</span></span></a></li><li><a href="#6"><span class="step"><span>Write callbacks (5)</span></span></a></li><li><a href="#7"><span class="step"><span>License</span></span></a></li></ol></div><div class="metadata"><a target="_blank" href="https://github.com/romellfudi/CallbacksSample/issues"><i class="material-icons">bug_report</i> Report a mistake</a></div></div><div id="codelab-title"><div id="codelab-nav-buttons"><a href="https://codelabs-preview.appspot.com/" id="arrow-back"><i class="material-icons">close</i></a><a href="#" id="menu"><i class="material-icons">menu</i></a></div><h1 class="title">Callback Tutorial</h1><div class="codelab-time-container" style="display: none;"></div><devsite-user></devsite-user></div><div id="main"><div id="steps"><google-codelab-step label="Introduction" duration="7" step="1" selected=""><h2 is-upgraded="" class="step-title">1. Introduction</h2>
+        <h2 is-upgraded="">Target</h2>
+<p>This is a tutorial for introducing a how implement, usage, and test callback structure, for example: when you need to return different structures on one method:</p>
+<pre><code><span class="com">// Usage a kind of callback method</span><span class="pln">
+service</span><span class="pun">.</span><span class="pln">needImagesForSomethig</span><span class="pun">(</span><span class="pln">id idTrack</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> hashSecurity</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ServiceCallback</span><span class="pun">(){</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> successful</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> code</span><span class="pun">,</span><span class="typ">Array</span><span class="pun">&lt;</span><span class="typ">Bitmap</span><span class="pun">&gt;</span><span class="pln"> maps</span><span class="pun">){</span><span class="pln">
+       </span><span class="com">// ok response</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> throwProblem</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> code</span><span class="pun">,</span><span class="pln"> </span><span class="typ">ServiceException</span><span class="pln"> exception</span><span class="pun">){</span><span class="pln">
+       </span><span class="com">// When you have a problem. f.e: error connection or exception</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln"> </span><span class="pun">);</span></code></pre>
+<h2 is-upgraded="">Dependencies<strong> </strong></h2>
+<p>Knowledge intermediate programming</p>
+<aside class="warning"><p><strong>Alert: </strong>So hard little body? Go away.</p>
+</aside>
+<aside class="special"><p><strong>Topic: </strong>Is pretty easy? Please continue Sir/Madam</p>
+</aside>
+
+
+      </div></div></google-codelab-step><google-codelab-step label="Getting set up" duration="7" step="2"><h2 is-upgraded="" class="step-title">2. Getting set up</h2>
+        <p>To start you  need a code with interfaces classes or adapter patterns.</p>
+<h2 is-upgraded=""><strong>Download the Code</strong></h2>
+<p>Click the following link to download all the code for this tutorial:</p>
+<p><a href="https://github.com/romellfudi/MockitoJfrogArtefactorySample/archive/master.zip" target="_blank"><paper-button class="colored" raised=""><iron-icon icon="file-download"></iron-icon>Download source code</paper-button></a></p>
+<h2 class="checklist" is-upgraded=""><strong>What you'll learn</strong></h2>
+<ul class="checklist">
+<li>How to separate the interface component and concrete component</li>
+<li>How to write callback for returns asynchronous objects </li>
+</ul>
+<h2 is-upgraded=""><strong>What you'll need</strong></h2>
+<ul>
+<li>Android Studio <code>+</code></li>
+<li><a href="https://github.com/romellfudi/CallbacksSample/archive/master.zip" target="_blank">The sample code</a></li>
+<li>Basic knowledge of Gradle &amp; Android</li>
+</ul>
+
+
+      </div></div></google-codelab-step><google-codelab-step label="Write callbacks (1)" duration="7" step="3"><h2 is-upgraded="" class="step-title">3. Write callbacks (1)</h2>
+        <h2 is-upgraded=""><strong>Write basic callback for two responses:</strong></h2>
+<p>  At the beginning, write a simple interface :</p>
+<pre><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">interface</span><span class="pln"> </span><span class="typ">Callback</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">void</span><span class="pln"> successed</span><span class="pun">(</span><span class="typ">Object</span><span class="pun">...</span><span class="pln"> objects</span><span class="pun">);</span><span class="pln">
+
+    </span><span class="kwd">void</span><span class="pln"> failed</span><span class="pun">(</span><span class="typ">Object</span><span class="pun">...</span><span class="pln"> objects</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<p>Add a response object into method instead of return type, notice your method change the return value to <code>void</code>.  </p>
+<pre><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> trySaveData</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> data</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Callback</span><span class="pln"> callback</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(!</span><span class="pln">data</span><span class="pun">.</span><span class="pln">isEmpty</span><span class="pun">())</span><span class="pln">
+            callback</span><span class="pun">.</span><span class="pln">successed</span><span class="pun">(</span><span class="str">"Se obtuvo la información"</span><span class="pun">,</span><span class="pln"> data</span><span class="pun">);</span><span class="pln">
+        </span><span class="kwd">else</span><span class="pln">
+            callback</span><span class="pun">.</span><span class="pln">failed</span><span class="pun">(</span><span class="str">"Mensaje de Error"</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<p>Now, when you want to use it, just call:</p>
+<pre><code><span class="pln">myApi</span><span class="pun">.</span><span class="pln">trySaveData</span><span class="pun">(</span><span class="pln">txt</span><span class="pun">.</span><span class="pln">getText</span><span class="pun">().</span><span class="pln">toString</span><span class="pun">(),</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Callback</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="lit">@Override</span><span class="pln">
+  </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> successed</span><span class="pun">(</span><span class="typ">Object</span><span class="pun">...</span><span class="pln"> objects</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+     show</span><span class="pun">((</span><span class="typ">String</span><span class="pun">)</span><span class="pln"> objects</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]);</span><span class="pln">
+     txt</span><span class="pun">.</span><span class="pln">append</span><span class="pun">(</span><span class="pln">objects</span><span class="pun">[</span><span class="lit">1</span><span class="pun">].</span><span class="pln">toString</span><span class="pun">());</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+
+  </span><span class="lit">@Override</span><span class="pln">
+  </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> failed</span><span class="pun">(</span><span class="typ">Object</span><span class="pun">...</span><span class="pln"> objects</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      show</span><span class="pun">((</span><span class="typ">String</span><span class="pun">)</span><span class="pln"> objects</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]);</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">});</span></code></pre>
+<aside class="special"><p>Great, builded our callback.</p>
+</aside>
+
+
+      </div></div></google-codelab-step><google-codelab-step label="Write callbacks (2)" duration="7" step="4"><h2 is-upgraded="" class="step-title">4. Write callbacks (2)</h2>
+        <h2 is-upgraded=""><strong>Write enque responses:</strong></h2>
+<p>  At the beginning, write a simple interface :</p>
+<pre><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">interface</span><span class="pln"> </span><span class="typ">RestCallBack</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">Callback</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">void</span><span class="pln"> httpOK</span><span class="pun">(</span><span class="typ">Object</span><span class="pun">...</span><span class="pln"> objects</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">void</span><span class="pln"> errorHttp</span><span class="pun">(</span><span class="typ">Exception</span><span class="pln"> exception</span><span class="pun">,</span><span class="typ">Object</span><span class="pun">...</span><span class="pln"> objects</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<p>  Second add a method that return the own controller/api (builder pattern)</p>
+<pre><code><span class="kwd">public</span><span class="pln"> myController enviarData</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> num</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">float</span><span class="pun">[]</span><span class="pln"> decimals</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    instance</span><span class="pun">.</span><span class="pln">mModel </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Model</span><span class="pun">();</span><span class="pln">
+    instance</span><span class="pun">.</span><span class="pln">mModel</span><span class="pun">.</span><span class="pln">setNumero</span><span class="pun">(</span><span class="pln">num</span><span class="pun">).</span><span class="pln">setCifras</span><span class="pun">(</span><span class="pln">decimals</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> instance</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<p>Third add getRest method, to provide add method after <code>sendData</code> finished:</p>
+<pre><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> enqueRest</span><span class="pun">(</span><span class="typ">RestCallBack</span><span class="pln"> restCallBack</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">mModel </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span><span class="pln">
+        restCallBack</span><span class="pun">.</span><span class="pln">httpOK</span><span class="pun">(</span><span class="pln">mModel</span><span class="pun">.</span><span class="pln">getNumero</span><span class="pun">(),</span><span class="pln"> mModel</span><span class="pun">.</span><span class="pln">getCifras</span><span class="pun">(),</span><span class="pln"> mModel</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">else</span><span class="pln">
+         restCallBack</span><span class="pun">.</span><span class="pln">errorHttp</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">NullPointerException</span><span class="pun">(</span><span class="str">"modelo sin construir"</span><span class="pun">));</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<aside class="warning"><p><strong>Alert:</strong> RestCallback interface has 4 methods that you must implement to use it.</p>
+</aside>
+<p>Now, when you want to use it, just call:</p>
+<pre><code><span class="pln">myController</span><span class="pun">.</span><span class="pln">enviarData</span><span class="pun">(</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="kwd">float</span><span class="pun">[]</span><span class="pln"> </span><span class="pun">{})</span><span class="pln">
+ </span><span class="pun">.</span><span class="pln">enqueRest</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">RestCallBack</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="lit">@Override</span><span class="pln">
+  </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> httpOK</span><span class="pun">(</span><span class="typ">Object</span><span class="pun">...</span><span class="pln">objects</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   </span><span class="kwd">int</span><span class="pln"> num </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">int</span><span class="pun">)</span><span class="pln"> objects</span><span class="pun">[</span><span class="lit">0</span><span class="pun">];</span><span class="pln">
+   </span><span class="kwd">float</span><span class="pun">[]</span><span class="pln"> floats </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">float</span><span class="pun">[])</span><span class="pln"> objects</span><span class="pun">[</span><span class="lit">1</span><span class="pun">];</span><span class="pln">
+   </span><span class="typ">Model</span><span class="pln"> model </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Model</span><span class="pun">)</span><span class="pln"> objects</span><span class="pun">[</span><span class="lit">2</span><span class="pun">];</span><span class="pln">
+
+  </span><span class="pun">}</span><span class="pln">
+
+  </span><span class="lit">@Override</span><span class="pln">
+  </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> errorHttp</span><span class="pun">(</span><span class="typ">Exception</span><span class="pln"> exception</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Object</span><span class="pun">...</span><span class="pln">objects</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">exception </span><span class="pun">==</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span><span class="pln">
+    show</span><span class="pun">(</span><span class="pln">exception</span><span class="pun">.</span><span class="pln">getMessage</span><span class="pun">());</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+
+  </span><span class="lit">@Override</span><span class="pln">
+  </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> successed</span><span class="pun">(</span><span class="typ">Object</span><span class="pun">...</span><span class="pln">objects</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   show</span><span class="pun">(</span><span class="pln">objects</span><span class="pun">[</span><span class="lit">0</span><span class="pun">].</span><span class="pln">toString</span><span class="pun">());</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+
+  </span><span class="lit">@Override</span><span class="pln">
+  </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> failed</span><span class="pun">(</span><span class="typ">Object</span><span class="pun">...</span><span class="pln">objects</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   show</span><span class="pun">(</span><span class="pln">objects</span><span class="pun">[</span><span class="lit">0</span><span class="pun">].</span><span class="pln">toString</span><span class="pun">());</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+ </span><span class="pun">});</span></code></pre>
+<aside class="special"><p>Great again, building different kind of response, it depends on you</p>
+</aside>
+
+
+      </div></div></google-codelab-step><google-codelab-step label="Write callbacks (3)" duration="7" step="5"><h2 is-upgraded="" class="step-title">5. Write callbacks (3)</h2>
+        <h2 is-upgraded=""><strong>Write an abstract class from three interfaces:</strong></h2>
+<p>  At the beginning, write 3 different interfaces :</p>
+<pre><code><span class="com">// First interface</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">interface</span><span class="pln"> </span><span class="typ">SuccessCallback</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">void</span><span class="pln"> onSuccess</span><span class="pun">(</span><span class="typ">Object</span><span class="pun">...</span><span class="pln"> objects</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="com">// Second interface</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">interface</span><span class="pln"> </span><span class="typ">FailCallback</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">void</span><span class="pln"> onFail</span><span class="pun">(</span><span class="typ">Object</span><span class="pun">...</span><span class="pln"> objects</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="com">// Third interface</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">interface</span><span class="pln"> </span><span class="typ">ParseCallback</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">void</span><span class="pln"> onParse</span><span class="pun">(</span><span class="typ">ParseException</span><span class="pln"> exception</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Object</span><span class="pun">...</span><span class="pln"> objects</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<p>Subsequently, write an abstract class which implement the 3 interfaces that we wrote them.  </p>
+<pre><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">abstract</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">MethodCall</span><span class="pln"> </span><span class="kwd">implements</span><span class="pln"> 
+    </span><span class="typ">SuccessCallback</span><span class="pun">,</span><span class="pln"> </span><span class="typ">FailCallback</span><span class="pun">,</span><span class="pln"> </span><span class="typ">ParseCallback</span><span class="pun">{}</span></code></pre>
+<aside class="warning"><p><strong>Notice:</strong>  Use static class for me, because Method class is built inner controller/api class.</p>
+</aside>
+<p>Now, when you want to use it, just call:</p>
+<pre><code><span class="pln">myApi</span><span class="pun">.</span><span class="pln">getParsedObject</span><span class="pun">(</span><span class="str">""</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> myController</span><span class="pun">.</span><span class="typ">MethodCall</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="lit">@Override</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> onFail</span><span class="pun">(</span><span class="typ">Object</span><span class="pun">...</span><span class="pln">objects</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        objects</span><span class="pun">[</span><span class="lit">0</span><span class="pun">].</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="lit">@Override</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> onParse</span><span class="pun">(</span><span class="typ">ParseException</span><span class="pln"> exception</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Object</span><span class="pun">...</span><span class="pln">objects</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        show</span><span class="pun">(</span><span class="pln">exception</span><span class="pun">.</span><span class="pln">getMessage</span><span class="pun">());</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="lit">@Override</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> onSuccess</span><span class="pun">(</span><span class="typ">Object</span><span class="pun">...</span><span class="pln">objects</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        objects</span><span class="pun">[</span><span class="lit">0</span><span class="pun">].</span><span class="pln">toString</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">});</span></code></pre>
+<aside class="special"><p>Just it, whether have an exception, the method will call the onFail block.</p>
+</aside>
+
+
+      </div></div></google-codelab-step><google-codelab-step label="Write callbacks (4)" duration="7" step="6"><h2 is-upgraded="" class="step-title">6. Write callbacks (4)</h2>
+        <h2 is-upgraded=""><strong>Write an api with different callbacks:</strong></h2>
+<p>  At the beginning, in this part use the Callback interface from Write callbacks(1) , second :</p>
+<pre><code><span class="com">// Attach too many callbacks</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> twoSteps</span><span class="pun">(</span><span class="typ">Callback</span><span class="pun">...</span><span class="pln">callbacks</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Callback</span><span class="pln"> callback</span><span class="pun">:</span><span class="pln"> callbacks</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">callback </span><span class="kwd">instanceof</span><span class="pln"> </span><span class="typ">PreCallback</span><span class="pun">)</span><span class="pln">
+            callback</span><span class="pun">.</span><span class="pln">successed</span><span class="pun">(</span><span class="str">"Pre-Success"</span><span class="pun">);</span><span class="pln">
+        </span><span class="kwd">else</span><span class="pln"> </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">callback </span><span class="kwd">instanceof</span><span class="pln"> </span><span class="typ">PosCallback</span><span class="pun">)</span><span class="pln">
+            callback</span><span class="pun">.</span><span class="pln">failed</span><span class="pun">(</span><span class="str">"Pos-Fail"</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<p>Lastly, write a statement that call the twoSteps method:</p>
+<pre><code><span class="pln">myApi</span><span class="pun">.</span><span class="pln">twoSteps</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">PreCallback</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="lit">@Override</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> successed</span><span class="pun">(</span><span class="typ">Object</span><span class="pun">...</span><span class="pln">objects</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        show</span><span class="pun">(</span><span class="pln">objects</span><span class="pun">[</span><span class="lit">0</span><span class="pun">].</span><span class="pln">toString</span><span class="pun">());</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="lit">@Override</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> failed</span><span class="pun">(</span><span class="typ">Object</span><span class="pun">...</span><span class="pln">objects</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        show</span><span class="pun">(</span><span class="pln">objects</span><span class="pun">[</span><span class="lit">0</span><span class="pun">].</span><span class="pln">toString</span><span class="pun">());</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">},</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">PosCallback</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="lit">@Override</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> successed</span><span class="pun">(</span><span class="typ">Object</span><span class="pun">...</span><span class="pln">objects</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        show</span><span class="pun">(</span><span class="pln">objects</span><span class="pun">[</span><span class="lit">0</span><span class="pun">].</span><span class="pln">toString</span><span class="pun">());</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="lit">@Override</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> failed</span><span class="pun">(</span><span class="typ">Object</span><span class="pun">...</span><span class="pln">objects</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        show</span><span class="pun">(</span><span class="pln">objects</span><span class="pun">[</span><span class="lit">0</span><span class="pun">].</span><span class="pln">toString</span><span class="pun">());</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">},</span><span class="pln"> </span><span class="pun">...</span><span class="pln"> </span><span class="com">// You put all callbacks, that you want them</span><span class="pln">
+</span><span class="pun">);</span></code></pre>
+<aside class="warning"><p><strong>Notice:</strong> Inner twoSteps method, you probably might use if-else cases or other flow.</p>
+</aside>
+<aside class="special"><p>Just it, always depends on you.</p>
+<p><em><code>"to infinity and beyond" - Buzz Lightyear</code></em></p>
+</aside>
+
+
+      </div></div></google-codelab-step><google-codelab-step label="Write callbacks (5)" duration="7" step="7"><h2 is-upgraded="" class="step-title">7. Write callbacks (5)</h2>
+        <h2 is-upgraded=""><strong>Write an api/controller class to use with different models:</strong></h2>
+<p>  At the beginning, write the class with templates annotations to support two different models:</p>
+<p> Writing the interfaces:</p>
+<pre><code><span class="com">// first interface with two template class</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">interface</span><span class="pln"> </span><span class="typ">IntTemSuper</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln"> A</span><span class="pun">,</span><span class="pln"> B </span><span class="pun">&gt;</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    A methodSuperReturnA</span><span class="pun">(</span><span class="pln">B b</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="com">// inheritance interface from IntTemSuper</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">interface</span><span class="pln"> </span><span class="typ">IntTemUnder</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln"> X</span><span class="pun">,</span><span class="pln"> Y </span><span class="pun">&gt;</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">IntTemSuper</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln"> X</span><span class="pun">,</span><span class="pln"> Y </span><span class="pun">&gt;</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    Y methodPoorReturnY</span><span class="pun">(</span><span class="pln">X x</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<p>Subsequently, write a main/api class, as a method, just do one thing and that it.</p>
+<pre><code><span class="com">// Class with two template classes</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">TemplateController</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln"> G</span><span class="pun">,</span><span class="pln"> H </span><span class="pun">&gt;</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> methodStaticCall</span><span class="pun">(</span><span class="typ">TemplateCallback</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln"> G</span><span class="pun">,</span><span class="pln"> H </span><span class="pun">&gt;</span><span class="pln"> callback</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        callback</span><span class="pun">.</span><span class="pln">methodSuperReturnA</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">);</span><span class="pln">
+        callback</span><span class="pun">.</span><span class="pln">methodPoorReturnY</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">abstract</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">TemplateCallback</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln"> TC</span><span class="pun">,</span><span class="pln"> UC </span><span class="pun">&gt;</span><span class="pln">
+                   </span><span class="kwd">implements</span><span class="pln"> </span><span class="typ">IntTemUnder</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln"> TC</span><span class="pun">,</span><span class="pln"> UC </span><span class="pun">&gt;</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<aside class="warning"><p><strong>Notice:</strong>  Use an abstract class as callback interface, its static because we need to use wherever you want.</p>
+</aside>
+<p>Now, when you want to use it, build a new Class and call it.</p>
+<pre><code><span class="kwd">new</span><span class="pln"> </span><span class="typ">TemplateController</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln"> </span><span class="typ">Model</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Model2</span><span class="pln"> </span><span class="pun">&gt;</span><span class="pln"> </span><span class="pun">()</span><span class="pln">
+    </span><span class="pun">.</span><span class="pln">methodStatickCall</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">TemplateController</span><span class="pun">.</span><span class="typ">TemplateCallback</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln"> </span><span class="typ">Model</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Model2</span><span class="pln"> </span><span class="pun">&gt;</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="lit">@Override</span><span class="pln">
+        </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Model2</span><span class="pln"> methodPoorReturnY</span><span class="pun">(</span><span class="typ">Model</span><span class="pln"> model</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Model2</span><span class="pun">();</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+
+        </span><span class="lit">@Override</span><span class="pln">
+        </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Model</span><span class="pln"> methodSuperReturnA</span><span class="pun">(</span><span class="typ">Model2</span><span class="pln"> model2</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Model</span><span class="pun">();</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">});</span></code></pre>
+<aside class="special"><p>Well done, whether you like this tutorial, please share it.</p>
+</aside>
+
+
+      </div></div></google-codelab-step><google-codelab-step label="License" duration="1" step="8"><h2 is-upgraded="" class="step-title">8. License</h2>
+        <h2 is-upgraded=""><strong>by Romell Domínguez</strong></h2>
+        <p class="image-container"><a href="http://portfolio.romellfudi.com"><img style="width: 287.00px" src="./index_files/icono.png"></a></p>
+<p>Copyright 2018 Romell D.Z.</p>
+<p>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at</p>
+<p>http://www.apache.org/licenses/LICENSE-2.0</p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,</p>
+<p>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</p>
+<p>See the License for the specific language governing permissions and limitations under the License.</p>
+
+
+      </div></div></google-codelab-step></div><div id="controls"><div id="fabs"><a href="#" id="previous-step" title="Previous step" disappear="">Back</a><div class="spacer"></div><a href="#" id="next-step" title="Next step">Next</a><a href="https://codelabs-preview.appspot.com/" id="done" hidden="" title="Codelab complete">Done</a></div></div></div></google-codelab>
+
+  <script async="">
+    document.addEventListener("DOMContentLoaded", function() {
+      var pubBtn = document.getElementById('publishButton');
+      var pubForm = document.getElementById('publishForm');
+      var pubStatus = document.getElementById('publishButtonStatus');
+
+      pubForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        pubBtn.disabled = true;
+        pubStatus.textContent = '';
+        pubStatus.classList.remove('success');
+        pubStatus.classList.remove('error');
+
+        var req = new XMLHttpRequest();
+
+        var onError = function() {
+          var msg = 'Request failed';
+          if (req.statusText) {
+            msg += ' with status "' + req.statusText + '"';
+          }
+          if (req.responseText) {
+            msg += ': ' + req.responseText;
+          }
+          pubStatus.classList.add('error');
+          pubStatus.textContent = msg;
+          pubBtn.disabled = false;
+        };
+
+        req.addEventListener('load', function() {
+          if (req.status != 200) {
+            onError();
+            return;
+          }
+          pubStatus.textContent = ('Publication request submitted' +
+            ' (reload preview to re-publish)');
+          pubStatus.classList.add('success');
+        });
+        req.addEventListener('error', onError);
+        req.addEventListener('abort', onError);
+        req.open("post", pubForm.action);
+        req.send(new FormData(pubForm));
+      });
+    });
+  </script>
+
+  <script src="./index_files/native-shim.js"></script>
+  <script src="./index_files/custom-elements.min.js"></script>
+  <script src="./index_files/prettify.js"></script>
+  <script src="./index_files/codelab-elements.js"></script>
+
+
+</body></html>
